@@ -25,7 +25,7 @@ SELECT
     NULL::date as creation_date,
     NULL::date as begin_date,
     NULL::date as end_date,
-    owner.id as owner_id, 
+    owner.id as owner_id,
     '{{ var("integration_id") }}'::uuid  as integration_id,
     _airbyte_raw_{{ var("table_prefix") }}_boards._airbyte_data as last_raw_data 
 FROM "{{ var("table_prefix") }}_boards"

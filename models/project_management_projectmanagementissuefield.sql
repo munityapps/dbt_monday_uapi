@@ -22,7 +22,7 @@ SELECT
     board.title as name,
     NULL as description,
     board.type as type,
-    board.title as path,
+    board.id as path,
     project.id as project_id,
     '{{ var("timestamp") }}' as sync_timestamp,
     type.id as issue_type_id
