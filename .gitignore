@@ -72,7 +72,6 @@ charts/*/charts/*tgz
 
 # OTHER
 airsaas.txt
-*.sql
 target/
 
 profiles.yml
