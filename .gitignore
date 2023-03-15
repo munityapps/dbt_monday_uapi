@@ -1,0 +1,79 @@
+# CUSTOMIZATION
+nohup.out
+cube
+.env
+docker-compose.override.yml
+docker-compose.override.yaml
+vault_root_token.txt
+
+# OS
+.DS_Store
+
+# KUBE
+charts/values.yaml
+
+# API
+api/dist
+api/node_modules
+api/coverage
+api/.nyc_output
+api/uploads
+
+# TODO files
+todo.md
+todo.txt
+todo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# APP
+app/node_modules/*
+app/lib/
+
+# WEBSOCKET
+websocket_server/node_modules
+
+# EDITOR
+.idea
+.vscode
+.vscode/*
+*~
+**/*.sw*
+**/*un~
+**/*.pyc.*
+**/*.pyc
+*.launch
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.c9/
+.settings/
+
+# VIM
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+Sessionx.vim
+
+# HELM
+charts/*/charts/*tgz
+
+# OTHER
+airsaas.txt
+*.sql
+target/
+
+profiles.yml
+profiles.yaml
