@@ -22,7 +22,7 @@ SELECT
     board.title as name,
     NULL as description,
     board.type as type,
-    concat('custom_values[?(@.gid==', board_id ,')].display_value') as path,
+    concat('column_values[?(@.id==', board.id ,')]') as path,
     project.id as project_id,
     '{{ var("timestamp") }}' as sync_timestamp,
     type.id as issue_type_id
