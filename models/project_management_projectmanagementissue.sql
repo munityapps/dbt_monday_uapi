@@ -32,6 +32,7 @@ SELECT
     project.id as project_id,
     NULL as status_id,
     type.id as type_id,
+    "group".id as group_id,
     false as is_milestone
 FROM "{{ var("table_prefix") }}_items"
     LEFT JOIN {{ ref('project_management_projectmanagementproject') }} as project
@@ -42,9 +43,13 @@ FROM "{{ var("table_prefix") }}_items"
         on "{{ var("table_prefix") }}_items".subscribers->0->>'id' = assignee.external_id
         and assignee.source = 'monday'
         and assignee.integration_id = '{{ var("integration_id") }}'
-    LEFT JOIN {{ ref('project_management_projectmanagementissuetype') }} AS type 
+    LEFT JOIN {{ ref('project_management_projectmanagementissuetype') }} as type 
         ON type.external_id = 'task'
         AND type.integration_id = '{{ var("integration_id") }}'
         AND type.project_id = project.id
+    LEFT JOIN {{ ref('project_management_projectmanagementgroup') }} as "group"
+        on "{{ var("table_prefix") }}_items".group->>'id' = "group".external_id
+        and assignee.source = 'monday'
+        and assignee.integration_id = '{{ var("integration_id") }}'
     LEFT JOIN _airbyte_raw_{{ var("table_prefix") }}_items
         on _airbyte_raw_{{ var("table_prefix") }}_items._airbyte_ab_id = "{{ var("table_prefix") }}_items"._airbyte_ab_id

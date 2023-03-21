@@ -6,7 +6,7 @@ services:
         volumes:
             - "./:/usr/app/dbt"
             - "./profiles.yml:/root/.dbt/profiles.yml"
-        command: "run --vars='{\"table_prefix\":\"_00931a85\",\"timestamp\":\"1674902643.235171\",\"workspace_id\":\"1202473904551670\",\"integration_id\":\"00931a85-9adc-4cbf-8edb-842e121ee4dc\"}'"
+        command: "run --vars='{\"table_prefix\":\"_1168e7df\",\"timestamp\":\"1674902643.235171\",\"workspace_id\":\"1202473904551670\",\"integration_id\":\"00931a85-9adc-4cbf-8edb-842e121ee4dc\"}'"
         networks:
             default:
             db-bridge:
