@@ -49,6 +49,6 @@ FROM "{{ var("table_prefix") }}_items"
         AND type.project_id = project.id
     LEFT JOIN {{ ref('project_management_projectmanagementgroup') }} as "group"
         on "{{ var("table_prefix") }}_items".group->>'id' = "group".external_id
-        and group.project_id = project.id
+        and "group".project_id = project.id
     LEFT JOIN _airbyte_raw_{{ var("table_prefix") }}_items
         on _airbyte_raw_{{ var("table_prefix") }}_items._airbyte_ab_id = "{{ var("table_prefix") }}_items"._airbyte_ab_id
