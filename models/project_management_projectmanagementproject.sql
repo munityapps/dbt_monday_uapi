@@ -18,7 +18,7 @@ SELECT
     'monday' as source,
     "{{ var("table_prefix") }}_boards".name as name,
     NULL as folder,
-    'https://app.monday.com/boards/' || "{{ var("table_prefix") }}_boards".id as url,
+    'https://{{ var("workspace_id") }}.monday.com/boards/' || "{{ var("table_prefix") }}_boards".id as url,
     NULL as status,
     CASE "{{ var("table_prefix") }}_boards".board_kind WHEN 'public' THEN false ELSE true END as private,
     "{{ var("table_prefix") }}_boards".description as description,

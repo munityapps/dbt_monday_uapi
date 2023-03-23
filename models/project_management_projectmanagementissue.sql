@@ -19,7 +19,7 @@ SELECT
     '{{ var("integration_id") }}'::uuid as integration_id,
     '{{ var("timestamp") }}' as sync_timestamp,
     _airbyte_raw_{{ var("table_prefix") }}_items._airbyte_data as last_raw_data, 
-    'https://app.monday.com/boards/'::varchar || ("{{ var("table_prefix") }}_items".board->>'id') || '/pulses/' || "{{ var("table_prefix") }}_items".id as url,
+    'https://{{ var("workspace_id") }}.monday.com/boards/'::varchar || ("{{ var("table_prefix") }}_items".board->>'id') || '/pulses/' || "{{ var("table_prefix") }}_items".id as url,
     NULL as priority,
     NULL as severity,
     "{{ var("table_prefix") }}_items".name,
