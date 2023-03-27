@@ -27,7 +27,7 @@ SELECT
     NULL::date as due_date,
     NULL::boolean as complete,
     NULL as tags,
-    assignee.id as assignee_id,
+    NULL as assignee_id,
     NULL as creator_id,
     project.id as project_id,
     NULL as status_id,
@@ -39,10 +39,6 @@ FROM "{{ var("table_prefix") }}_items"
         on project.external_id = "{{ var("table_prefix") }}_items".board->>'id'
         and project.source = 'monday'
         and project.integration_id = '{{ var("integration_id") }}'
-    LEFT JOIN {{ ref('project_management_projectmanagementuser') }} as assignee
-        on "{{ var("table_prefix") }}_items".subscribers->0->>'id' = assignee.external_id
-        and assignee.source = 'monday'
-        and assignee.integration_id = '{{ var("integration_id") }}'
     LEFT JOIN {{ ref('project_management_projectmanagementissuetype') }} as type 
         ON type.external_id = 'task'
         AND type.integration_id = '{{ var("integration_id") }}'
