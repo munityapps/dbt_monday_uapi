@@ -33,3 +33,4 @@ FROM "{{ var("table_prefix") }}_boards"
         on owner.external_id = "{{ var("table_prefix") }}_boards".owner->>'id' and owner.source = 'monday' and owner.integration_id = '{{ var("integration_id") }}'
     left join _airbyte_raw_{{ var("table_prefix") }}_boards
         on _airbyte_raw_{{ var("table_prefix") }}_boards._airbyte_ab_id = "{{ var("table_prefix") }}_boards"._airbyte_ab_id
+where "{{ var("table_prefix") }}_boards"."type" = 'board'
