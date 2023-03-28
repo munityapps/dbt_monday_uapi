@@ -42,3 +42,4 @@ LEFT JOIN {{ ref('project_management_projectmanagementproject') }} AS project
 ON  project.external_id = board.board_id
 LEFT JOIN {{ ref('project_management_projectmanagementissuetype') }} AS type
 ON  type.project_id = project.id
+WHERE project.id IS NOT NULL

@@ -48,3 +48,4 @@ FROM "{{ var("table_prefix") }}_items"
         and "group".project_id = project.id
     LEFT JOIN _airbyte_raw_{{ var("table_prefix") }}_items
         on _airbyte_raw_{{ var("table_prefix") }}_items._airbyte_ab_id = "{{ var("table_prefix") }}_items"._airbyte_ab_id
+WHERE project.id IS NOT NULL

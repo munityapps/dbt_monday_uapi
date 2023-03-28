@@ -38,3 +38,4 @@ FROM (SELECT
 ) as "group"
 LEFT JOIN {{ ref('project_management_projectmanagementproject') }} AS project
 ON  project.external_id = "group".board_id
+WHERE project.id IS NOT NULL
