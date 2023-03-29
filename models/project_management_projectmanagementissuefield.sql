@@ -7,22 +7,22 @@
 SELECT
     md5(
         '{{ var("integration_id") }}'::text ||
-        board.board_id::text ||
-        'task'::text ||
-        board.id ||
+        project.id ||
+        field.id::text ||
+        field.board_id ||
         'issuefield'::text ||
         'monday'::text
     ) as id,
-    board.id as external_id,
+    field.id as external_id,
     'monday' as source,
     NOW() as created,
     NOW() as modified,
     '{{ var("integration_id") }}'::uuid as integration_id,
-    board.raw as last_raw_data,
-    board.title as name,
+    field.raw as last_raw_data,
+    field.title as name,
     NULL as description,
-    board.type as type,
-    concat('column_values[?(@.id==', board.id ,')]') as path,
+    field.type as type,
+    concat('column_values[?(@.id==', field.id ,')]') as path,
     project.id as project_id,
     '{{ var("timestamp") }}' as sync_timestamp,
     type.id as issue_type_id
@@ -37,9 +37,9 @@ FROM (SELECT
         jsonb_array_elements(columns)->>'archived' as archived,
         jsonb_array_elements(columns)->>'settings_str' as settings_str
     FROM "{{ var("table_prefix") }}_boards"
-) as board
+) as field 
 LEFT JOIN {{ ref('project_management_projectmanagementproject') }} AS project
-ON  project.external_id = board.board_id
+ON  project.external_id = field.board_id
 LEFT JOIN {{ ref('project_management_projectmanagementissuetype') }} AS type
 ON  type.project_id = project.id
 WHERE project.id IS NOT NULL
