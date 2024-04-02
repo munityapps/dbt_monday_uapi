@@ -30,7 +30,7 @@ SELECT
     _airbyte_raw_{{ var("table_prefix") }}_boards._airbyte_data as last_raw_data 
 FROM "{{ var("table_prefix") }}_boards"
     left join {{ ref('project_management_projectmanagementuser') }} as owner
-        on owner.external_id = "{{ var("table_prefix") }}_boards".owner->>'id' and owner.source = 'monday' and owner.integration_id = '{{ var("integration_id") }}'
+        on owner.external_id = "{{ var("table_prefix") }}_boards".owners->>'id' and owner.source = 'monday' and owner.integration_id = '{{ var("integration_id") }}'
     left join _airbyte_raw_{{ var("table_prefix") }}_boards
         on _airbyte_raw_{{ var("table_prefix") }}_boards._airbyte_ab_id = "{{ var("table_prefix") }}_boards"._airbyte_ab_id
 where "{{ var("table_prefix") }}_boards"."type" = 'board'
