@@ -28,7 +28,7 @@ SELECT
     NULL::boolean as complete,
     NULL as tags,
     NULL as assignee_id,
-    NULL as creator_id,
+    creator.id as creator_id,
     project.id as project_id,
     NULL as status_id,
     type.id as type_id,
@@ -43,6 +43,9 @@ FROM "{{ var("table_prefix") }}_items"
         ON type.external_id = 'task'
         AND type.integration_id = '{{ var("integration_id") }}'
         AND type.project_id = project.id
+    LEFT JOIN {{ ref('project_management_projectmanagementuser') }} as creator 
+        ON creator.external_id = "{{ var("table_prefix") }}_items".creator_id
+        AND type.integration_id = '{{ var("integration_id") }}'
     LEFT JOIN {{ ref('project_management_projectmanagementgroup') }} as "group"
         on "{{ var("table_prefix") }}_items".group->>'id' = "group".external_id
         and "group".project_id = project.id
